@@ -5,6 +5,27 @@ div {
 body {
   font-family: sans-serif;
   font-weight: bold;
+  background-color: black;
+}
+
+.blue {
+  background-image: url(https://i.imgur.com/H1uK45i.jpg);
+}
+
+.green {
+  background-image: url(https://i.imgur.com/dAIZPHY.jpg);
+}
+
+.red {
+  background-image: url(https://i.imgur.com/DbPelDi.jpg);
+}
+
+.grey {
+  background-image: url(https://i.imgur.com/N0O6aqj.jpg);
+}
+
+.pink {
+  background-image: url(https://i.imgur.com/mtBlNyb.jpg);
 }
 
 .gameboard {
@@ -15,8 +36,8 @@ body {
 .tableau,
 .stack,
 .deck {
-  width: 50px;
-  height: 80px;
+  width: 100px;
+  height: 150px;
   border: 2px solid black;
   border-radius: 6px;
   background-color: rgba(117, 117, 117, 0.5);
@@ -24,12 +45,11 @@ body {
 
 .card {
   background-image: url(https://i.imgur.com/71h4dF9.jpg);
-  background-size: 500px 560px;
-  background-position: -450px -480px;
+  background-size: calc(100% * 10) calc(100% * 7);
 }
 
 .card-playable:hover {
-  transform: scale(1.6);
+  transform: scale(1.2);
   z-index: 10;
 }
 
@@ -47,74 +67,89 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  font-size: 20px;
 }
 
 .card-playable:hover > .card-actions > * {
-  width: 200%;
-  height: 200%;
-  transform: scale(calc(1 / 2)) translate(-50%, -50%);
+  /* width: 200%; */
+  /* height: 200%; */
+  /* transform: scale(calc(1 / 2)) translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
 }
 
-/* .face-undefined {
-  background-image: image(https://i.imgur.com/JxhVccO.jpg#xywh=0,0,20,20);
-} */
+.face-top {
+  background-image: url(https://i.imgur.com/qyBevNb.jpg);
+  background-size: 100% 100%;
+}
+
 .face-1 {
-  background-position-x: 0px;
-  background-position-y: 0px;
+  background-position-x: calc(0 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-2 {
-  background-position-x: -50px;
-  background-position-y: 0px;
+  background-position-x: calc(1 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-3 {
-  background-position-x: -100px;
-  background-position-y: 0px;
+  background-position-x: calc(2 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-4 {
-  background-position-x: -150px;
-  background-position-y: 0px;
+  background-position-x: calc(3 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-5 {
-  background-position-x: -200px;
-  background-position-y: 0px;
+  background-position-x: calc(4 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-6 {
-  background-position-x: -250px;
-  background-position-y: 0px;
+  background-position-x: calc(5 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-7 {
-  background-position-x: -300px;
-  background-position-y: 0px;
+  background-position-x: calc(6 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-8 {
-  background-position-x: -350px;
-  background-position-y: 0px;
+  background-position-x: calc(7 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-9 {
-  background-position-x: -400px;
-  background-position-y: 0px;
+  background-position-x: calc(8 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-10 {
-  background-position-x: -450px;
-  background-position-y: 0px;
+  background-position-x: calc(9 * 100% / 9);
+  background-position-y: calc(0 * 100% / 6);
 }
 .face-11 {
-  background-position-x: 0px;
-  background-position-y: -80px;
+  background-position-x: calc(0 * 100% / 9);
+  background-position-y: calc(1 * 100% / 6);
 }
 .face-12 {
-  background-position-x: -50px;
-  background-position-y: -80px;
+  background-position-x: calc(1 * 100% / 9);
+  background-position-y: calc(1 * 100% / 6);
 }
 .face-w {
-  background-position-x: -100px;
-  background-position-y: -80px;
+  background-position-x: calc(2 * 100% / 9);
+  background-position-y: calc(1 * 100% / 6);
 }
 
 .deck {
 }
 .tableau {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 50;
 }
+
 .tableau-container {
   display: inline-flex;
   flex-direction: column;
@@ -127,22 +162,24 @@ body {
 }
 .card .card {
   position: absolute;
-  top: 10px;
+  top: 20px;
   left: -2px;
 }
 
 .tableaus {
   display: flex;
   align-items: flex-end;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 .tableaus > *,
 .hand > * {
-  margin: 2px;
+  margin: 10px;
+  font-size: 40px;
 }
 .hand {
   display: flex;
   flex-direction: row;
+  /* margin-top: 100px; */
 }
 .player {
 }
@@ -159,27 +196,66 @@ body {
   left: -2px;
 }
 
+#colors {
+  display: flex;
+  flex-direction: row;
+}
+.color-choice {
+  width: 2em;
+  height: 1.5em;
+}
+
 #root {
 }
 #players {
   display: flex;
   justify-content: space-evenly;
+  flex-direction: column;
+  /* width: 100%; */
+}
+
+#player {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   width: 100%;
 }
-#player {
+#controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .draw-button {
   position: absolute;
   top: 50%;
-  transform: translate(0, -50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 20;
 }
 
 .App {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   height: 100%;
+  background-size: contain;
+  overflow: hidden;
+  padding-left: 100px;
+}
+
+.home-turf {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+#color {
+  display: flex;
+  justify-content: space-between;
 }
