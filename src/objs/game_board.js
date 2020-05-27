@@ -10,18 +10,23 @@ export default class GameBoardObj {
     this.c = new StackObj();
     this.d = new StackObj();
     this.deck = new DeckObj();
+    this.discard = new DeckObj();
+    this.a.name = 'a';
+    this.b.name = 'b';
+    this.c.name = 'c';
+    this.d.name = 'd';
   }
 
   Init() {
-    this.deck.MultiAdd(this.CreateDeck().map(c => new CardObj({ face: c })));
+    this.discard.Clear();
+    this.deck.Clear();
     this.a.Clear();
-    this.a.name = 'a';
     this.b.Clear();
-    this.b.name = 'b';
     this.c.Clear();
-    this.c.name = 'c';
     this.d.Clear();
-    this.d.name = 'd';
+
+    this.deck.MultiAdd(this.CreateDeck().map(c => new CardObj({ face: c })));
+    this.deck.Shuffle();
   }
 
   CreateDeck() {
@@ -43,17 +48,6 @@ export default class GameBoardObj {
       wilds,
     ].flat();
 
-    const count = all.length;
-
-    all.forEach((c, i) => {
-      const r = Math.floor(Math.random() * count);
-      const temp = all[i];
-      all[r] = c;
-      all[i] = temp;
-    });
-
-    console.log(all);
-
     return all;
   }
 
@@ -65,6 +59,7 @@ export default class GameBoardObj {
       c: this.c.Save(),
       d: this.d.Save(),
       deck: this.deck.Save(),
+      discard: this.discard.Save(),
     };
   }
 
@@ -83,6 +78,9 @@ export default class GameBoardObj {
     }
     if (json.deck != undefined) {
       this.deck.Load(json.deck);
+    }
+    if (json.discard != undefined) {
+      this.discard.Load(json.discard);
     }
   }
 }

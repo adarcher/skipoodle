@@ -23,7 +23,7 @@ export default class ContainerObj {
   }
 
   Remove(card) {
-    const index = this.cards.findIndex(c => c == card);
+    const index = this.cards.findIndex(c => c === card);
     if (index >= 0) {
       this.cards.splice(index, 1);
       if (card.container == this) card.container = false;

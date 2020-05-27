@@ -30,6 +30,7 @@ const GameBoard = props => {
   const tab_c = board.c;
   const tab_d = board.d;
   const deck = board.deck;
+  const discard = board.discard;
 
   const player = props.player;
 
@@ -40,7 +41,7 @@ const GameBoard = props => {
   };
 
   const Reset = e => {
-    board[e.target.value].Reset(board.deck);
+    board[e.target.value].Reset(board.discard);
   };
 
   const ResetButton = tab => {
@@ -49,6 +50,37 @@ const GameBoard = props => {
       return <StackResetActions tab={tab} Reset={Reset} />;
     } else {
       return <></>;
+    }
+  };
+
+  const deck_style = {
+    fontSize: '1.5vw',
+  };
+
+  const BoardDeck = () => {
+    if (deck.length > 0) {
+      return (
+        <Deck deck={deck}>
+          <button className='draw-button' onClick={Draw}>
+            Draw
+          </button>
+        </Deck>
+      );
+    } else {
+      return <Tableau name='Deck' cards={deck} style={deck_style} />;
+    }
+  };
+  const DiscardDeck = () => {
+    if (discard.length > 0) {
+      return (
+        <Deck deck={discard}>
+          <button className='draw-button' onClick={Draw}>
+            Shuffle In
+          </button>
+        </Deck>
+      );
+    } else {
+      return <Tableau name='Discard' cards={discard} style={deck_style} />;
     }
   };
 
@@ -66,11 +98,8 @@ const GameBoard = props => {
       <Tableau name='d' cards={tab_d}>
         {ResetButton(tab_d)}
       </Tableau>
-      <Deck deck={deck}>
-        <button className='draw-button' onClick={Draw}>
-          Draw
-        </button>
-      </Deck>
+      {BoardDeck()}
+      {DiscardDeck()}
     </div>
   );
 };
