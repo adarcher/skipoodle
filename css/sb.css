@@ -203,6 +203,7 @@ body {
 .color-choice {
   width: 2em;
   height: 1.5em;
+  background-size: 5000%;
 }
 
 #root {

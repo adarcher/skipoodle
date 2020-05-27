@@ -40,6 +40,11 @@ const GameBoard = props => {
     }
   };
 
+  const ShuffleIn = () => {
+    discard.Shuffle();
+    deck.AddDeck(discard);
+  };
+
   const Reset = e => {
     board[e.target.value].Reset(board.discard);
   };
@@ -74,7 +79,7 @@ const GameBoard = props => {
     if (discard.length > 0) {
       return (
         <Deck deck={discard}>
-          <button className='draw-button' onClick={Draw}>
+          <button className='draw-button' onClick={ShuffleIn}>
             Shuffle In
           </button>
         </Deck>
