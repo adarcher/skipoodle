@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Stack from './stack.react';
 import Hand from './hand.react';
 import Tableau from '../general/tableau.react';
@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite';
 
 const Player = props => {
   const player = props.player;
-  const name = player.name;
+  const name = useMemo(() => player.name);
   const pool = player.pool;
   const tab_a = player.a;
   const tab_b = player.b;
@@ -24,10 +24,16 @@ const Player = props => {
       <div>
         <div className='player-name'>{name}</div>
         <div className='tableaus'>
-          <Tableau board={props.board} name={name_a} cards={tab_a} />
-          <Tableau board={props.board} name={name_b} cards={tab_b} />
-          <Tableau board={props.board} name={name_c} cards={tab_c} />
-          <Tableau board={props.board} name={name_d} cards={tab_d} />
+          {owned ? (
+            <>
+              <Tableau board={props.board} name={name_a} cards={tab_a} />
+              <Tableau board={props.board} name={name_b} cards={tab_b} />
+              <Tableau board={props.board} name={name_c} cards={tab_c} />
+              <Tableau board={props.board} name={name_d} cards={tab_d} />
+            </>
+          ) : (
+            <></>
+          )}
           <Stack board={props.board} cards={pool} />
         </div>
       </div>

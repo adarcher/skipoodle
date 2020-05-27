@@ -24,8 +24,10 @@ const Tableau = props => {
   };
   return (
     <div className='tableau-container'>
-      <div className='tableau-name'>{`${name} (${cards.length})`}</div>
-      <div className='tableau'>{Cascade(visible_cards)}</div>
+      <div className='tableau'>
+        <div className='tableau-name'>{name}</div>
+        {Cascade(visible_cards)}
+      </div>
     </div>
   );
 };

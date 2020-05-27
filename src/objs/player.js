@@ -1,8 +1,11 @@
 import HandObj from './hand';
 import ContainerObj from './container';
 import PoolObj from './pool';
+import { observable } from 'mobx';
 
 export default class PlayerObj {
+  @observable name;
+
   constructor({
     name,
     pool = [],

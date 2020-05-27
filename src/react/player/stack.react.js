@@ -7,9 +7,12 @@ const Stack = props => {
   const cards = props.cards;
 
   return (
-    <Deck deck={cards}>
-      <Card board={props.board} card={cards.cards[0]} />
-    </Deck>
+    <>
+      <Deck deck={cards}>
+        <Card board={props.board} card={cards.cards[0]} />
+      </Deck>
+      <div className='stack-left'>{cards.length}</div>
+    </>
   );
 };
 

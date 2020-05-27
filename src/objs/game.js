@@ -1,13 +1,13 @@
 import GameBoardObj from './game_board';
 import PlayerObj from './player';
+import { observable } from 'mobx';
 
 const STARTING_CARDS = [0, 20, 30, 30, 20, 20];
 
 export default class GameObj {
   constructor(name) {
-    this.name = name;
     this.players = [
-      new PlayerObj({ name: this.name }),
+      new PlayerObj({ name: name }),
       new PlayerObj({ name: 'Abby' }),
       new PlayerObj({ name: 'Joe' }),
       new PlayerObj({ name: 'Albacore' }),
@@ -26,8 +26,8 @@ export default class GameObj {
     });
   }
 
-  Self() {
-    return this.players.find(p => p.name == this.name);
+  Self(name) {
+    return this.players.find(p => p.name == name);
   }
 
   Opponents() {
